@@ -6,8 +6,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Board from "./pages/Board";
 import BoardId from "./pages/BoardId";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 
 function App() {
   return (
