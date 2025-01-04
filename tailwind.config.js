@@ -34,6 +34,7 @@ export default {
             ESTP: "#FFB895", // 빨간 주황색
             ESFP: "#FCEEC8", // 밝은 금색
           },
+          50: "#dee1f5",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
