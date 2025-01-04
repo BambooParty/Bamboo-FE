@@ -17,8 +17,8 @@ const WritePostModal = () => {
     title: "",
     content: "",
     date: new Date(),
-    username: "test", // 유저
-    mbti: "INFP", // 유저
+    username: "test", // 유저정보
+    mbti: "INFP", // 유저정보
     comments: [], // 댓글
   });
 

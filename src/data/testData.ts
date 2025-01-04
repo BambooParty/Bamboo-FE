@@ -154,20 +154,22 @@ export const postData = [
     comments: [
       {
         id: "comment1",
-        username: "user1",
-        comments: "ddddd",
+        username: "박혜원",
+        comment:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt tin",
         date: "2021-09-01",
       },
       {
         id: "comment1",
-        username: "user1",
-        comments: "ddddd",
+        username: "전지현",
+        comment:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt tin",
         date: "2021-09-01",
       },
     ],
   },
   {
-    username: "test1",
+    username: "송여름",
     mbti: "ISFP",
     postId: "post2",
     title: "title2",
@@ -177,14 +179,16 @@ export const postData = [
     comments: [
       {
         id: "comment1",
-        username: "user1",
-        comments: "ddddd",
+        username: "송여름",
+        comment:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt tin",
         date: "2021-09-01",
       },
       {
         id: "comment1",
-        username: "user1",
-        comments: "ddddd",
+        username: "김민선",
+        comment:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt tin",
         date: "2021-09-01",
       },
     ],
