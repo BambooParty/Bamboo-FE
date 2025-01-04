@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../components/ui/button";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <div>
       <h1 className="text-h2">hello</h1>
