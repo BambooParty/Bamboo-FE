@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/ui/Header";
 import Home from "./pages/Home";
 import Board from "./pages/Board";
+import BoardId from "./pages/BoardId";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/board" element={<Board />}></Route>
+          <Route path="/board" element={<Board />}></Route>
+          <Route path="/board/:id" element={<BoardId />}></Route>
         </Routes>
       </BrowserRouter>
     </>
