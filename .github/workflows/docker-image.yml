@@ -41,5 +41,5 @@ jobs:
     # 7. latest 태그로도 push(선택)
     - name: Tag and Push as Latest
       run: |
-        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/my-react-app:latest
+        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:latest
