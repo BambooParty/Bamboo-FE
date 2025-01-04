@@ -14,6 +14,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         bamboo: {
           DEFAULT: "#919add",
+          50: "#dee1f5",
 
           mbtiColors: {
             INTJ: "#C3B1E1", // 파스텔 보라
@@ -33,6 +34,7 @@ export default {
             ESTP: "#FFB895", // 빨간 주황색
             ESFP: "#FCEEC8", // 밝은 금색
           },
+          50: "#dee1f5",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -72,6 +74,15 @@ export default {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0, transform: "translateY(10px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-out",
       },
     },
   },
