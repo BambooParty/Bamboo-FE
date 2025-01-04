@@ -1,5 +1,4 @@
 import { Badge } from "./badge";
-import { testData } from "../../data/testData";
 
 const validVariants = [
   "INFP",
@@ -23,22 +22,13 @@ const validVariants = [
 
 type VariantType = (typeof validVariants)[number];
 
-const MbtiBadge = () => {
+const MbtiBadge = ({ mbti }: { mbti: string }) => {
+  const badgeVariant: VariantType = validVariants.includes(mbti as VariantType)
+    ? (mbti as VariantType)
+    : "default";
   return (
     <div>
-      {testData.map((data, index) => {
-        const variant: VariantType = validVariants.includes(
-          data.mbti as VariantType
-        )
-          ? (data.mbti as VariantType)
-          : "default";
-
-        return (
-          <Badge key={index} variant={variant}>
-            {data.mbti}
-          </Badge>
-        );
-      })}
+      <Badge variant={badgeVariant}>{mbti}</Badge>
     </div>
   );
 };
