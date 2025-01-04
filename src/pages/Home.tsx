@@ -1,11 +1,12 @@
 import React from "react";
-import { Button } from "../components/ui/button";
+import Chatbot from "../lib/chatbot/Chatbot";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <h1 className="text-h2">hello</h1>
-      <Button>click</Button>
+      <div>
+        <Chatbot />
+      </div>
     </div>
   );
 };

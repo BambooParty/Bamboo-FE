@@ -14,6 +14,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         bamboo: {
           DEFAULT: "#919add",
+          50: "#dee1f5",
           secondary: "#E4C61A",
           accent: "#453E9C", // hover
           font: "#282828",
@@ -82,6 +83,15 @@ export default {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0, transform: "translateY(10px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-out",
       },
     },
   },
