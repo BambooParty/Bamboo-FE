@@ -8,7 +8,7 @@ const Login: React.FC = () => {
       <div className="w-full bg-white">
         <div className="p-6 ">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-7">
-            Login
+            로그인
           </h1>
           <form className="" action="#">
             <div className="w-full flex flex-col items-start mb-6">
