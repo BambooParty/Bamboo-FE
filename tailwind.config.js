@@ -14,6 +14,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         bamboo: {
           DEFAULT: "#919add",
+          50: "#dee1f5",
         },
         card: {
           DEFAULT: "hsl(var(--card))",

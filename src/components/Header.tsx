@@ -3,7 +3,7 @@ import * as React from "react";
 const Header = () => {
   return (
     <header>
-      <nav className="bg-bamboo border-gray-200 px-4 lg:px-6 py-4 dark:bg-gray-800 w-screen absolute top-0 left-0">
+      <nav className="bg-bamboo border-gray-200 px-4 lg:px-6 py-5 shadow-sm dark:bg-gray-800 w-screen max-w-screen-lg absolute top-2 left-1/2 -translate-x-1/2 rounded-sm">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl ">
           <a href="/" className="flex items-center">
             <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
@@ -24,7 +24,7 @@ const Header = () => {
               <li>
                 <a
                   href="board"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
+                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
                   게시판
                 </a>
@@ -32,7 +32,7 @@ const Header = () => {
               <li>
                 <a
                   href="profile"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 "
+                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 "
                 >
                   프로필
                 </a>
@@ -40,7 +40,7 @@ const Header = () => {
               <li>
                 <a
                   href="login"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
+                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
                   로그인
                 </a>
