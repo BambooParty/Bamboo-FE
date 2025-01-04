@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header>
       <nav className="bg-bamboo border-gray-200 px-4 lg:px-6 py-4 dark:bg-gray-800 w-screen absolute top-0 left-0">
