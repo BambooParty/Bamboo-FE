@@ -1,0 +1,45 @@
+name: Build and Push to Docker Hub
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. 리포지토리 체크아웃
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    # 2. Node 세팅
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: "16"
+
+    # 3. 의존성 설치 및 빌드
+    - name: Install dependencies
+      run: npm intall
+
+    - name: Build
+      run: npm run build
+
+    # 4. Docker 로그인
+    - name: Docker Hub Login
+      run: |
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    # 5. Docker 이미지 빌드
+    - name: Build Docker Image
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:${{ github.sha }} .
+
+    # 6. 빌드한 이미지를 Docker Hub에 push
+    - name: Push Docker Image
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:${{ github.sha }}
+
+    # 7. latest 태그로도 push(선택)
+    - name: Tag and Push as Latest
+      run: |
+        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/my-react-app:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bamboo-fe:latest
