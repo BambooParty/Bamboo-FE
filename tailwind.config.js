@@ -15,6 +15,25 @@ export default {
         bamboo: {
           DEFAULT: "#919add",
           50: "#dee1f5",
+
+          mbtiColors: {
+            INTJ: "#C3B1E1", // 파스텔 보라
+            INTP: "#D1D1D1", // 밝은 회색
+            ENTJ: "#F4A6A6", // 파스텔 레드
+            ENTP: "#F9C78D", // 파스텔 오렌지
+            INFJ: "#A8DADC", // 청록색
+            INFP: "#E8D3FF", // 연보라색
+            ENFJ: "#F7E6A3", // 파스텔 골드
+            ENFP: "#FFF3B0", // 노란색
+            ISTJ: "#A3B4D7", // 남색
+            ISFJ: "#F5E4C3", // 베이지색
+            ESTJ: "#C8A27E", // 갈색
+            ESFJ: "#FFCCE5", // 핑크색
+            ISTP: "#D3D7E8", // 은색
+            ISFP: "#A8D5BA", // 녹색
+            ESTP: "#FFB895", // 빨간 주황색
+            ESFP: "#FCEEC8", // 밝은 금색
+          },
         },
         card: {
           DEFAULT: "hsl(var(--card))",
