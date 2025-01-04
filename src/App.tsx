@@ -1,11 +1,17 @@
+import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
-import { Button } from "./components/ui/button";
+import Header from "./components/ui/Header";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <h1 className="text-h2">hello</h1>
-      <Button>click</Button>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
