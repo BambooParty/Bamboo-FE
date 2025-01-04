@@ -1,7 +1,8 @@
 import React from "react";
-import MbtiBadge from "../MbtiBadge";
-import { PostProps } from "../../../types/BoardTypes";
+import { PostProps } from "../../types/BoardTypes";
 import { useNavigate } from "react-router";
+import MbtiBadge from "../MbtiBadge";
+import { FaRegComment } from "react-icons/fa";
 
 const Post: React.FC<PostProps> = ({
   username,
@@ -29,8 +30,14 @@ const Post: React.FC<PostProps> = ({
       <h2>{contents}</h2>
 
       <div className="flex items-center gap-3">
-        <h2>{comments.length}</h2> <span>|</span> <h2>{date}</h2> <span>|</span>
-        <h2>{username}</h2>
+        <span className="flex items-center gap-1">
+          <span>
+            <FaRegComment />
+          </span>
+          <span>{comments.length}</span>
+        </span>
+        <span>|</span> <span>{date}</span> <span>|</span>
+        <span>{username}</span>
       </div>
     </div>
   );

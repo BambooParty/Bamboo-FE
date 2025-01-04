@@ -1,4 +1,4 @@
-import Post from "../components/ui/Board/Post";
+import Post from "../components/Board/Post";
 import { postData } from "../data/testData";
 
 const Board = () => {
