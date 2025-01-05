@@ -1,9 +1,36 @@
 import React, { useState } from "react";
 import { Input } from "../components/ui/input";
 import MbtiButton from "../components/MbtiButton";
+import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router";
+
+interface IFormInput {
+  userId: string;
+  nickname: string;
+  password: string;
+  passwordConfirm: string;
+}
 
 const Signup: React.FC = () => {
   const [mbti, setMbti] = useState<string[]>([]);
+  const { register, handleSubmit } = useForm<IFormInput>();
+  const navigate = useNavigate();
+
+  const submitHandler = async (formData: IFormInput) => {
+    const { data } = await axios.post("/api/v1/auth/sign-up", {
+      userId: formData.userId,
+      nickname: formData.nickname,
+      password: formData.password,
+      mbti: mbti.join("").toUpperCase(),
+    });
+
+    navigate("/");
+
+    console.log(data);
+    return "";
+  };
+
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-lg w-screen ">
       <div className="w-full bg-white">
@@ -11,7 +38,10 @@ const Signup: React.FC = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-7">
             회원가입
           </h1>
-          <form className="flex flex-col gap-4" action="#">
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(submitHandler)}
+          >
             <div className="w-full flex flex-col items-start">
               <label
                 htmlFor="nickname"
@@ -19,7 +49,7 @@ const Signup: React.FC = () => {
               >
                 Nickname
               </label>
-              <Input className="py-5" />
+              <Input className="py-5" {...register("nickname")} />
             </div>
             <div className="w-full flex flex-col items-start">
               <label
@@ -28,7 +58,7 @@ const Signup: React.FC = () => {
               >
                 ID
               </label>
-              <Input className="py-5" />
+              <Input className="py-5" {...register("userId")} />
             </div>
             <div className="w-full flex flex-col items-start">
               <label
@@ -40,9 +70,9 @@ const Signup: React.FC = () => {
               <Input
                 className="py-5"
                 type="password"
-                name="password"
                 id="password"
                 required
+                {...register("password")}
               />
             </div>
             <div className="w-full flex flex-col items-start">
@@ -55,9 +85,9 @@ const Signup: React.FC = () => {
               <Input
                 className="py-5"
                 type="password"
-                name="password"
                 id="password"
                 required
+                {...register("passwordConfirm")}
               />
             </div>
             <div className="w-full flex flex-col items-start">
