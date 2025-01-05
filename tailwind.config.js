@@ -15,7 +15,11 @@ export default {
         bamboo: {
           DEFAULT: "#919add",
           50: "#dee1f5",
-
+          secondary: "#E4C61A",
+          accent: "#453E9C", // hover
+          font: "#282828",
+          bgDisabled: "#E5E5EA",
+          fontDisabled: "#AEAEB2",
           mbtiColors: {
             INTJ: "#C3B1E1", // 파스텔 보라
             INTP: "#D1D1D1", // 밝은 회색
@@ -34,7 +38,12 @@ export default {
             ESTP: "#FFB895", // 빨간 주황색
             ESFP: "#FCEEC8", // 밝은 금색
           },
-          50: "#dee1f5",
+          mentalStatus: {
+            urgent: "#ED2F1A",
+            danger: "#FF7D10",
+            warn: "#F9DC34",
+            stable: "#0CE538",
+          },
         },
         card: {
           DEFAULT: "hsl(var(--card))",
