@@ -13,7 +13,7 @@ import { useState } from "react";
 import { Textarea } from "../ui/textarea";
 
 const WritePostModal = () => {
-  const [postValue, setPostValue] = useState({
+  const [postValue] = useState({
     title: "",
     content: "",
     date: new Date(),
@@ -22,11 +22,11 @@ const WritePostModal = () => {
     comments: [], // 댓글
   });
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  // const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  // };
 
   return (
     <Dialog>
@@ -46,7 +46,8 @@ const WritePostModal = () => {
         <DialogFooter>
           <Button
             type="submit"
-            className="bg-bamboo transition duration-300 font-bold hover:bg-bamboo-accent">
+            className="bg-bamboo transition duration-300 font-bold hover:bg-bamboo-accent"
+          >
             작성
           </Button>
         </DialogFooter>
