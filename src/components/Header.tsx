@@ -44,7 +44,7 @@ const Header: React.FC = () => {
                   href="login"
                   className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
-                  {user ? "로그아웃" : "로그인"}
+                  로그인
                 </a>
               </li>
             </ul>

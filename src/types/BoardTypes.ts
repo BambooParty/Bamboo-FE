@@ -1,7 +1,7 @@
 export interface CommentsProps {
   id: string;
   username: string;
-  comments: string;
+  comment: string;
   date: string;
 }
 export interface PostProps {
