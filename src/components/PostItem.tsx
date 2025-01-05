@@ -7,7 +7,7 @@ import { GetPost } from "@/types/boardTypes";
 const PostItem: React.FC<GetPost> = ({
   date,
   title,
-  contentSummary,
+  contents,
   commentCount,
 }) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const PostItem: React.FC<GetPost> = ({
         <MbtiBadge mbti="INTP" />
         <h2 className="text-xl font-bold">{title}</h2>
       </div>
-      <h2>{contentSummary}</h2>
+      <h2>{contents}</h2>
 
       <div className="flex items-center gap-3">
         <span className="flex items-center gap-1">

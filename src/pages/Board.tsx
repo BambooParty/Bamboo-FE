@@ -3,8 +3,8 @@ import WritePostModal from "../components/Board/WritePostModal";
 import MbtiButton from "../components/MbtiButton";
 import { Input } from "../components/ui/input";
 import PostItem from "@/components/PostItem";
-import { GetPost } from "@/types/boardTypes";
-import { getPosts } from "@/api/apis";
+import { GetPost, PostWithComment } from "@/types/boardTypes";
+import { getPosts, getPostsWithComments } from "@/api/apis";
 
 const Board = () => {
   const [selectedMbti, setSelectedMbti] = useState<string[]>([
@@ -14,19 +14,18 @@ const Board = () => {
     "j",
   ]);
 
-  const [postData, setPostData] = useState<GetPost[]>([]);
+  const [postData, setPostData] = useState<PostWithComment[] | null>(null);
 
   useEffect(() => {
-    const fetchPostData = async () => {
+    const fetchPostWithComment = async () => {
       try {
-        const userId = "testUserId";
-        const posts = await getPosts(selectedMbti.join(""), userId);
+        const posts = await getPostsWithComments();
         setPostData(posts);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchPostData();
+    fetchPostWithComment();
   }, [selectedMbti]);
 
   return (
@@ -88,7 +87,7 @@ const Board = () => {
             key={post.title}
             date={post.date}
             title={post.title}
-            contentSummary={post.contentSummary}
+            contents={post.comments}
             commentCount={post.commentCount}
           />
         ))}

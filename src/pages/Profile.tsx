@@ -1,7 +1,8 @@
+import { getUserInfo } from "@/api/apis";
 import ActivityTab from "@/components/Profile/ActivityTab";
 import Chart from "@/components/Profile/Chart";
 import ProfileHeader from "@/components/Profile/ProfileHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const userData = {
   id: "1",
@@ -28,6 +29,10 @@ const Profile = () => {
   const handleOnClickTab = (id: number) => {
     setActiveTab(id);
   };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   return (
     <div className="flex flex-col gap-7 w-full">

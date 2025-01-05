@@ -3,6 +3,7 @@ import { Input } from "../components/ui/input";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import useUserStore from "@/stores/UserStore";
 
 interface IUserInfo {
   userId: string;
@@ -11,11 +12,15 @@ interface IUserInfo {
 
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm<IUserInfo>();
+  const { user, setUser } = useUserStore();
 
   const navigate = useNavigate();
 
   const submitHandler = async (formData: IUserInfo) => {
     const { data } = await axios.post("/api/v1/auth/log-in", formData);
+    const { data: userData } = await axios.get("/api/v1/users/me");
+    setUser({ ...userData });
+
     navigate("/");
   };
   return (

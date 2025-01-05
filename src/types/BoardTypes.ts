@@ -1,21 +1,22 @@
-export interface CommentsProps {
+export interface Comments {
   nickname: string;
   content: string;
   date: string;
 }
 
 // 유저 포스트 조회
-export interface PostProps {
-  id: string;
+export interface PostWithComment {
+  id: string | null;
   mbti: string;
-  userId: string;
   title: string;
-  contentSummary: string;
-  content: string;
-  commentCount: number;
   date: string;
   nickname: string;
-  comments: CommentsProps[];
+  comments: {
+    nickname: string;
+    date: string;
+    content: string;
+  }[];
+  commentCount: number;
 }
 
 export interface PostResponse {
@@ -39,7 +40,7 @@ export interface PostData {
 
 export interface GetPost {
   title: string;
-  contentSummary: string;
+  contents: string;
   commentCount: number;
   date: string;
 }

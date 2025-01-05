@@ -3,6 +3,16 @@ import axios from "axios";
 
 // const baseURL = import.meta.env.VITE_API_BASE_URL;
 
+// 유저 프로필 조회
+export const getUserInfo = async () => {
+  try {
+    const response = await axios.get(`api/v1/users/me`);
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 게시판
 export const getPosts = async (mbti: string, userId: string) => {
   try {
@@ -16,9 +26,10 @@ export const getPosts = async (mbti: string, userId: string) => {
   }
 };
 
-export const getPostsWithComments = async (postId: string) => {
+export const getPostsWithComments = async () => {
   try {
-    const response = await axios.get(`/api/v1/posts/${postId}`);
+    const response = await axios.get(`/api/v1/posts`);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);

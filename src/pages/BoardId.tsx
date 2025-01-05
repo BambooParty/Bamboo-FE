@@ -1,12 +1,29 @@
 import { useParams } from "react-router";
-import { postData } from "../data/testData";
 import CommentBubble from "../components/Board/CommentBubble";
 import MbtiBadge from "../components/MbtiBadge";
 import { FaRegComment } from "react-icons/fa";
+import { GetPost } from "@/types/boardTypes";
+import { useEffect, useState } from "react";
+import { getPostsWithComments } from "@/api/apis";
 
 const BoardId = () => {
   const { id } = useParams<{ id: string }>();
   const currentUser = "전지현";
+
+  const [postData, setPostData] = useState<GetPost[]>([]);
+
+  useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const userId = "testUserId";
+        const posts = await getPostsWithComments(userId);
+        setPostData(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPostData();
+  }, []);
 
   return (
     <div className="flex justify-center items-center  h-screen">
