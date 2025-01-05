@@ -12,19 +12,19 @@ const Board = () => {
     "j",
   ]);
 
-  const [postData, setPostData] = useState<>([]);
+  // const [postData, setPostData] = useState<>([]);
 
-  const filteredPosts = postData.filter((post) => {
-    return (
-      post.mbti.length === selectedMbti.length &&
-      post.mbti
-        .split("")
-        .every(
-          (mbti, index) =>
-            mbti.toLowerCase() === selectedMbti[index].toLowerCase()
-        )
-    );
-  });
+  // const filteredPosts = postData.filter((post) => {
+  //   return (
+  //     post.mbti.length === selectedMbti.length &&
+  //     post.mbti
+  //       .split("")
+  //       .every(
+  //         (mbti, index) =>
+  //           mbti.toLowerCase() === selectedMbti[index].toLowerCase()
+  //       )
+  //   );
+  // });
 
   return (
     <>
@@ -80,7 +80,7 @@ const Board = () => {
         </div>
       </div>
       <div className="flex flex-col gap-5 mt-5">
-        {filteredPosts.map((post) => (
+        {/* {filteredPosts.map((post) => (
           <PostItem
             username={post.username}
             mbti={post.mbti}
@@ -90,7 +90,7 @@ const Board = () => {
             comments={post.comments}
             postId={post.postId}
           />
-        ))}
+        ))} */}
 
         <div className="flex items-center gap-3">
           <Input

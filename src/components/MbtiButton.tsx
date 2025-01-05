@@ -14,7 +14,6 @@ const MbtiButton: React.FC<{
           id={choices[0].id}
           onChange={onChange}
           checked={selected == choices[0].value}
-          defaultChecked
         />
         <label
           className="bg-bamboo-50 hover:bg-bamboo peer-checked:bg-bamboo text-gray-800 font-semibold py-2 px-4 cursor-pointer rounded-l"

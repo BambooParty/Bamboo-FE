@@ -2,7 +2,6 @@ import { RiEditFill } from "react-icons/ri";
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -11,21 +10,40 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useState } from "react";
 import { Textarea } from "../ui/textarea";
+import { addPost } from "@/api/apis";
 
 const WritePostModal = () => {
   const [postValue, setPostValue] = useState({
     title: "",
     content: "",
-    date: new Date(),
-    username: "test", // 유저정보
-    mbti: "INFP", // 유저정보
-    comments: [], // 댓글
+    nickName: "test user", // TODO: 로그인 구현 후 자동생성
+    mbti: "INFP", // TODO: 로그인 구현 후 자동생성
   });
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setPostValue((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      await addPost({ postData: postValue });
+      setPostValue({
+        title: "",
+        content: "",
+        nickName: "test user",
+        mbti: "INFP",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -35,21 +53,35 @@ const WritePostModal = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>게시글 작성</DialogTitle>
+          <DialogTitle>New Post</DialogTitle>
         </DialogHeader>
-        <div className="flex items-center space-x-2">
+        <form
+          className="flex flex-col items-center w-full gap-3 space-x-2"
+          onSubmit={handleOnSubmit}>
           <div className="grid flex-1 gap-2">
-            <Input value={postValue.title} />
-            <Textarea value={postValue.content} />
+            <Input
+              value={postValue.title}
+              className="w-96"
+              name="title"
+              onChange={handleOnChange}
+              placeholder="Title"
+              required
+            />
+            <Textarea
+              value={postValue.content}
+              className="w-96"
+              name="content"
+              onChange={handleOnChange}
+              placeholder="Contents"
+              required
+            />
           </div>
-        </div>
-        <DialogFooter>
           <Button
             type="submit"
             className="bg-bamboo transition duration-300 font-bold hover:bg-bamboo-accent">
-            작성
+            Upload
           </Button>
-        </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
