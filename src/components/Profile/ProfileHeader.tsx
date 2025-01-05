@@ -1,6 +1,6 @@
 import Avatar from "boring-avatars";
 import MbtiBadge from "../MbtiBadge";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 
 interface ProfileHeaderProps {
   username: string;
