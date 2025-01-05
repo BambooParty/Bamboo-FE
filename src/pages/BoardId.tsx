@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import CommentBubble from "../components/Board/CommentBubble";
 import MbtiBadge from "../components/MbtiBadge";
 import { FaRegComment } from "react-icons/fa";
-import { PostWithComment } from "@/types/boardTypes";
+import { PostWithComment } from "@/types/BoardTypes";
 import { useEffect, useState } from "react";
 import { getPostsWithComments } from "@/api/apis";
 

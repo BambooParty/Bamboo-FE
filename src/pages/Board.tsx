@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import WritePostModal from "../components/Board/WritePostModal";
 import MbtiButton from "../components/MbtiButton";
 import { Input } from "../components/ui/input";
-import PostItem from "@/components/PostItem";
-import { Posts } from "@/types/boardTypes";
+// import PostItem from "@/components/PostItem";
+import { Posts } from "@/types/BoardTypes";
 import { getPosts } from "@/api/apis";
 
 const Board = () => {

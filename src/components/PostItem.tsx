@@ -1,14 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router";
-import { FaRegComment } from "react-icons/fa";
-import MbtiBadge from "./MbtiBadge";
-import { PostItemProps } from "@/types/boardTypes";
+// import { useNavigate } from "react-router";
+import { PostItemProps } from "@/types/BoardTypes";
 
 const PostItem: React.FC<PostItemProps> = ({}) => {
-  const navigate = useNavigate();
-  const handlePostClick = (title: string) => {
-    navigate(`/board/${title}`);
-  };
+  // const navigate = useNavigate();
+  // const handlePostClick = (title: string) => {
+  //   navigate(`/board/${title}`);
+  // };
   return (
     <></>
     // <div
