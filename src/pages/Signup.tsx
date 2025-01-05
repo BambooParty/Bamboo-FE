@@ -4,6 +4,7 @@ import MbtiButton from "../components/MbtiButton";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import useUserStore from "@/stores/UserStore";
 
 interface IFormInput {
   userId: string;
@@ -16,18 +17,23 @@ const Signup: React.FC = () => {
   const [mbti, setMbti] = useState<string[]>([]);
   const { register, handleSubmit } = useForm<IFormInput>();
   const navigate = useNavigate();
+  const { setUser } = useUserStore();
 
   const submitHandler = async (formData: IFormInput) => {
-    const { data } = await axios.post("/api/v1/auth/sign-up", {
+    await axios.post("/api/v1/auth/sign-up", {
       userId: formData.userId,
       nickname: formData.nickname,
       password: formData.password,
       mbti: mbti.join("").toUpperCase(),
     });
 
+    const { data } = await axios.post("/api/v1/auth/log-in", {
+      userId: formData.userId,
+      password: formData.password,
+    });
+    setUser({ ...data });
     navigate("/");
 
-    console.log(data);
     return "";
   };
 

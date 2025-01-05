@@ -1,13 +1,14 @@
-import { PostData, Posts } from "@/types/boardTypes";
 import axios from "axios";
-
+import { PostData, Posts } from "@/types/BoardTypes";
 // 유저 프로필 조회
 export const getUserInfo = async () => {
   try {
-    const response = await axios.get(`api/v1/users/me`);
+    const { data } = await axios.get(`api/v1/users/me`);
+    return data;
   } catch (error) {
     console.log(error);
   }
+  return {};
 };
 
 // 게시판
