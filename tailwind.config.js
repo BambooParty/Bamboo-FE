@@ -38,12 +38,6 @@ export default {
             ESTP: "#FFB895", // 빨간 주황색
             ESFP: "#FCEEC8", // 밝은 금색
           },
-          mentalStatus: {
-            urgent: "#ED2F1A",
-            danger: "#FF7D10",
-            warn: "#F9DC34",
-            stable: "#0CE538",
-          },
         },
         card: {
           DEFAULT: "hsl(var(--card))",

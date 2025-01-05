@@ -6,6 +6,7 @@ import Board from "./pages/Board";
 import BoardId from "./pages/BoardId";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/board/:id" element={<BoardId />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
         </Routes>
       </BrowserRouter>
     </>
