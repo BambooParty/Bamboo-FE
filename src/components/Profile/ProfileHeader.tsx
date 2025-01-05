@@ -27,7 +27,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           </div>
         </div>
       </div>
-      <Button>프로필 수정</Button>
+      {/* <Button>프로필 수정</Button> */}
     </div>
   );
 };
