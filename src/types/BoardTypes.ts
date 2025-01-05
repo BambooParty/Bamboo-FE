@@ -1,15 +1,30 @@
 export interface CommentsProps {
-  id: string;
-  username: string;
-  comment: string;
+  nickname: string;
+  content: string;
   date: string;
 }
+
+// 유저 포스트
 export interface PostProps {
-  username: string;
+  id: string;
   mbti: string;
+  userId: string;
   title: string;
-  postId: string;
+  contentSummary: string;
+  content: string;
+  commentCount: number;
   date: string;
-  contents: string;
+  nickname: string;
   comments: CommentsProps[];
+}
+
+export interface PostResponse {
+  data: {
+    posts: {
+      title: string;
+      contentSummary: string;
+      commentCount: number;
+      date: string;
+    }[];
+  };
 }

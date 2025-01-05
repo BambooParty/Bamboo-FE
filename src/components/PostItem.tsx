@@ -1,10 +1,10 @@
 import React from "react";
-import { PostProps } from "../../types/BoardTypes";
 import { useNavigate } from "react-router";
-import MbtiBadge from "../MbtiBadge";
 import { FaRegComment } from "react-icons/fa";
+import MbtiBadge from "./MbtiBadge";
+import { UserPostProps } from "@/types/boardTypes";
 
-const Post: React.FC<PostProps> = ({
+const PostItem: React.FC<UserPostProps> = ({
   username,
   mbti,
   title,
@@ -14,11 +14,9 @@ const Post: React.FC<PostProps> = ({
   postId,
 }) => {
   const navigate = useNavigate();
-
   const handlePostClick = (postId: string) => {
     navigate(`/board/${postId}`);
   };
-
   return (
     <div
       className="p-5 rounded-sm cursor-pointer hover:bg-gray-100"
@@ -43,4 +41,4 @@ const Post: React.FC<PostProps> = ({
   );
 };
 
-export default Post;
+export default PostItem;

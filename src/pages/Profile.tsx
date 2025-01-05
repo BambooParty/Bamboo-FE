@@ -26,7 +26,6 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState<number>(1);
 
   const handleOnClickTab = (id: number) => {
-    console.log(id);
     setActiveTab(id);
   };
 

@@ -142,6 +142,28 @@ export const userData = [
   },
 ];
 
+// url: api/v1/posts?mbti=NT&userId=
+export const myPostResponse = [
+  {
+    data: {
+      posts: [
+        {
+          title: "제목",
+          contentSummary: "내용 100자 까지만",
+          commentCount: 4,
+          date: "2025-01-01",
+        },
+        {
+          title: "제목",
+          contentSummary: "내용 100자 까지만",
+          commentCount: 4,
+          date: "2025-01-01",
+        },
+      ],
+    },
+  },
+];
+
 export const postData = [
   {
     username: "test1",

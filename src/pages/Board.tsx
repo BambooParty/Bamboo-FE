@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Post from "../components/Board/Post";
 import WritePostModal from "../components/Board/WritePostModal";
 import MbtiButton from "../components/MbtiButton";
 import { Input } from "../components/ui/input";
-import { postData } from "../data/testData";
+import PostItem from "@/components/PostItem";
 
 const Board = () => {
   const [selectedMbti, setSelectedMbti] = useState<string[]>([
@@ -12,6 +11,8 @@ const Board = () => {
     "t",
     "j",
   ]);
+
+  const [postData, setPostData] = useState<>([]);
 
   const filteredPosts = postData.filter((post) => {
     return (
@@ -80,7 +81,7 @@ const Board = () => {
       </div>
       <div className="flex flex-col gap-5 mt-5">
         {filteredPosts.map((post) => (
-          <Post
+          <PostItem
             username={post.username}
             mbti={post.mbti}
             date={post.date}
