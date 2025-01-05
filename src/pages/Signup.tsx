@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "../components/ui/input";
 import MbtiButton from "../components/MbtiButton";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router";
 

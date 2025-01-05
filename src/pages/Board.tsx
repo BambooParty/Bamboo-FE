@@ -3,8 +3,8 @@ import WritePostModal from "../components/Board/WritePostModal";
 import MbtiButton from "../components/MbtiButton";
 import { Input } from "../components/ui/input";
 import PostItem from "@/components/PostItem";
-import { GetPost, PostWithComment } from "@/types/boardTypes";
-import { getPosts, getPostsWithComments } from "@/api/apis";
+import { Posts } from "@/types/boardTypes";
+import { getPosts } from "@/api/apis";
 
 const Board = () => {
   const [selectedMbti, setSelectedMbti] = useState<string[]>([
@@ -14,18 +14,21 @@ const Board = () => {
     "j",
   ]);
 
-  const [postData, setPostData] = useState<PostWithComment[] | null>(null);
+  const [postData, setPostData] = useState<Posts[]>([]);
+  const userId = "testuser";
 
+  console.log(postData);
   useEffect(() => {
-    const fetchPostWithComment = async () => {
+    const fetchPosts = async () => {
       try {
-        const posts = await getPostsWithComments();
-        setPostData(posts);
+        const mbti = selectedMbti.join("").toUpperCase();
+        const posts = await getPosts(mbti, userId);
+        setPostData(posts || []);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchPostWithComment();
+    fetchPosts();
   }, [selectedMbti]);
 
   return (
@@ -82,15 +85,15 @@ const Board = () => {
         </div>
       </div>
       <div className="flex flex-col gap-5 mt-5">
-        {postData?.map((post) => (
+        {/* {postData?.map((post) => (
           <PostItem
-            key={post.title}
+            key={post.userId}
             date={post.date}
             title={post.title}
-            contents={post.comments}
+            // contents={post.content}
             commentCount={post.commentCount}
           />
-        ))}
+        ))} */}
 
         <div className="flex items-center gap-3">
           <Input

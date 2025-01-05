@@ -1,34 +1,34 @@
-import { PostData } from "@/types/boardTypes";
+import { PostData, Posts } from "@/types/boardTypes";
 import axios from "axios";
-
-// const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 // 유저 프로필 조회
 export const getUserInfo = async () => {
   try {
     const response = await axios.get(`api/v1/users/me`);
-    console.log(response.data);
   } catch (error) {
     console.log(error);
   }
 };
 
 // 게시판
-export const getPosts = async (mbti: string, userId: string) => {
+export const getPosts = async (
+  mbti: string,
+  userId?: string
+): Promise<Posts[] | undefined> => {
   try {
     const response = await axios.get(
-      `/api/v1/posts?mbti=${mbti}&userId=${userId}`
+      `/api/v1/posts?mbti=${mbti}&userId=${userId ? userId : ""}`
     );
     console.log(response.data);
-    return response.data.posts;
+    return response.data.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getPostsWithComments = async () => {
+export const getPostsWithComments = async (postId: string) => {
   try {
-    const response = await axios.get(`/api/v1/posts`);
+    const response = await axios.get(`/api/v1/posts/${postId}`);
     console.log(response);
     return response.data;
   } catch (error) {

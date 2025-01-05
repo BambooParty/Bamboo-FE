@@ -2,21 +2,20 @@ import { useParams } from "react-router";
 import CommentBubble from "../components/Board/CommentBubble";
 import MbtiBadge from "../components/MbtiBadge";
 import { FaRegComment } from "react-icons/fa";
-import { GetPost } from "@/types/boardTypes";
+import { PostWithComment } from "@/types/boardTypes";
 import { useEffect, useState } from "react";
 import { getPostsWithComments } from "@/api/apis";
 
 const BoardId = () => {
   const { id } = useParams<{ id: string }>();
-  const currentUser = "전지현";
 
-  const [postData, setPostData] = useState<GetPost[]>([]);
+  const [postData, setPostData] = useState<PostWithComment[]>([]);
 
   useEffect(() => {
     const fetchPostData = async () => {
       try {
-        const userId = "testUserId";
-        const posts = await getPostsWithComments(userId);
+        const postId = "testUserId";
+        const posts = await getPostsWithComments(postId);
         setPostData(posts);
       } catch (error) {
         console.log(error);
@@ -29,14 +28,14 @@ const BoardId = () => {
     <div className="flex justify-center items-center  h-screen">
       {postData.map(
         (post) =>
-          post.postId === id && (
+          post.id === id && (
             <div className="flex flex-col gap-10 rounded-sm">
-              <div key={post.postId} className="flex flex-col gap-3 p-5">
+              <div key={post.id} className="flex flex-col gap-3 p-5">
                 <div className="flex items-center gap-5">
                   <MbtiBadge mbti={post.mbti}></MbtiBadge>
                   <span className="text-xl font-bold">{post.title}</span>
                 </div>
-                <div>{post.content}</div>
+                <div>{post.title}</div>
 
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1">
@@ -46,18 +45,17 @@ const BoardId = () => {
                     <span>{post.comments.length}</span>
                   </span>
                   <span>|</span> <span>{post.date}</span> <span>|</span>
-                  <span>{post.username}</span>
+                  <span>{post.nickname}</span>
                 </div>
               </div>
               <div className="w-full h-[.5px] bg-black"></div>
               <div className="flex flex-col justify-center items-center gap-3">
                 {post.comments.map((comment) => (
                   <CommentBubble
-                    key={comment.id}
-                    comment={comment.comment}
-                    username={comment.username}
+                    key={comment.content}
+                    comment={comment.content}
                     date={comment.date}
-                    currentUser={currentUser}
+                    username={comment.nickname}
                   />
                 ))}
               </div>

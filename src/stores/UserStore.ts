@@ -5,7 +5,6 @@ interface User {
   userId: string;
   nickname: string;
   mbti: string;
-  chatId: string;
 }
 
 // Zustand 스토어 타입

@@ -3,8 +3,21 @@ export interface Comments {
   content: string;
   date: string;
 }
+// 포스트 조회
+export interface Posts {
+  commentCount: number;
+  comments: string;
+  content: string;
+  date: string;
+  mbti: string;
+  nickname: string;
+  postId: string;
+  riskScore: number;
+  userId: string;
+  title: string;
+}
 
-// 유저 포스트 조회
+// 유저 포스트 상세보기
 export interface PostWithComment {
   id: string | null;
   mbti: string;
@@ -38,9 +51,19 @@ export interface PostData {
   nickName: string;
 }
 
-export interface GetPost {
+export interface PostItemProps {
+  postId: string;
+  userId: string;
+  mbti: string;
   title: string;
-  contents: string;
-  commentCount: number;
   date: string;
+  content: string;
+  nickname: string;
+  commentCount: number;
+  riskScore: number;
+  comments: Array<{
+    nickname: string;
+    date: string;
+    content: string;
+  }>;
 }
