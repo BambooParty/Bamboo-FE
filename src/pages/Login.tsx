@@ -1,20 +1,22 @@
-import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
+import React from "react";
 import { Input } from "../components/ui/input";
-import { Link } from "react-router";
-import useUserStore from "@/stores/UserStore";
+import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+
+interface IUserInfo {
+  userId: string;
+  password: string;
+}
 
 const Login: React.FC = () => {
-  const [userId, setUserId] = useState("");
-  const { user, setUser, clearUser } = useUserStore();
-  useEffect(() => {
-    clearUser();
-  }, []);
+  const { register, handleSubmit } = useForm<IUserInfo>();
 
-  const handleSubmit = async (e: FormEvent) => {
-    // await axios.post("/api/v1/login")
-    e.preventDefault();
-    setUser({ userId: userId, nickname: "user" });
+  const navigate = useNavigate();
+
+  const submitHandler = async (formData: IUserInfo) => {
+    const { data } = await axios.post("/api/v1/auth/log-in", formData);
+    navigate("/");
   };
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-lg w-screen">
@@ -23,7 +25,7 @@ const Login: React.FC = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-7">
             로그인
           </h1>
-          <form className="" onSubmit={handleSubmit}>
+          <form className="" onSubmit={handleSubmit(submitHandler)}>
             <div className="w-full flex flex-col items-start mb-6">
               <label
                 htmlFor="id"
@@ -31,11 +33,7 @@ const Login: React.FC = () => {
               >
                 ID
               </label>
-              <Input
-                className="py-6"
-                onChange={(e) => setUserId(e.target.value)}
-                value={userId}
-              />
+              <Input className="py-6" {...register("userId")} />
             </div>
             <div className="w-full flex flex-col items-start mb-6">
               <label
@@ -47,9 +45,9 @@ const Login: React.FC = () => {
               <Input
                 className="py-6"
                 type="password"
-                name="password"
                 id="password"
                 required
+                {...register("password")}
               />
             </div>
 
