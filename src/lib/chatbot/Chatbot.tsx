@@ -1,26 +1,71 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import React, { useState, ChangeEvent } from "react";
+// import { Checkbox } from "@/components/ui/checkbox";
+import React, { useState, ChangeEvent, useEffect, useRef } from "react";
 import axios from "axios";
+import useUserStore from "@/stores/UserStore";
+import { useConfigStore } from "@/stores/ConfigStore";
 
 type Message = {
-  sender: "user" | "bot";
+  sender: "HUMAN" | "AI";
   text: string;
+};
+
+type IMessageData = {
+  id: string;
+  userId: string;
+  mbti: string;
+  chatRoomId: string;
+  content: string;
+  chatType: "HUMAN" | "AI" | null;
+  createdAt: string;
 };
 
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState<string>("");
+  const { user } = useUserStore();
+  const { language } = useConfigStore();
+  const [placeholderMessage, setPlaceholderMessage] = useState<string>("");
+
+  useEffect(() => {
+    getHistory();
+  }, [user]);
+
+  useEffect(() => {
+    const loadMessages = async () => {
+      const langPack = await import(`@/lib/locales/${language}.json`);
+      setPlaceholderMessage(langPack.message);
+    };
+    loadMessages();
+  }, [language]);
+
+  const boxRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (boxRef.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight; // 스크롤을 아래로 이동
+    }
+  }, [messages]);
+
+  const getHistory = async () => {
+    const { data } = await axios.get(`/api/v1/chats?page=0&size=10`);
+    // console.log(data);
+    // console.log(user);
+    setMessages(
+      data.map((message: IMessageData) => {
+        return { sender: message.chatType, text: message.content };
+      })
+    );
+  };
 
   const handleSend = async () => {
     if (userInput.trim() === "") return;
 
-    const newMessage: Message = { sender: "user", text: userInput };
+    const newMessage: Message = { sender: "HUMAN", text: userInput };
 
     sendMessage(newMessage);
     setUserInput("");
 
     const botMessage: Message = {
-      sender: "bot",
+      sender: "AI",
       text: await getBotResponse(userInput),
     };
     sendMessage(botMessage);
@@ -31,10 +76,7 @@ const Chatbot: React.FC = () => {
   };
 
   const getBotResponse = async (input: string): Promise<string> => {
-    const res = await axios.post("/api/v1/chat", {
-      userId: "user123",
-      mbti: "ENTP",
-      chatRoomId: "677924af0a99ac7beac8ec87",
+    const res = await axios.post("/api/v1/chats", {
       content: input,
     });
 
@@ -49,23 +91,26 @@ const Chatbot: React.FC = () => {
   return (
     <div className="max-w-2xl w-screen mt-10 h-[84vh] flex flex-col overflow-y-auto">
       {/* 메시지 영역 */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto grow">
+      <div
+        ref={boxRef}
+        className="flex-1 p-4 space-y-4 overflow-y-auto grow scroll-smooth"
+      >
         {messages.map((msg, index) => (
           <div
             key={index}
             className={`flex ${
-              msg.sender === "user" ? "justify-end" : "justify-start"
-            } items-center`}
+              msg.sender === "HUMAN" ? "justify-end" : "justify-start"
+            } items-start`}
           >
             {/* 봇 프로필 아이콘 */}
-            {msg.sender === "bot" && (
+            {msg.sender === "AI" && (
               <div className="w-10 h-10 bg-yellow-300 rounded-full flex items-center justify-center mr-3 -translate-y-2"></div>
             )}
 
             {/* 메시지 버블 */}
             <div
-              className={`px-4 py-3 max-w-xs animate-fade-in ${
-                msg.sender === "user"
+              className={`px-4 py-3 max-w-md animate-fade-in text-start ${
+                msg.sender === "HUMAN"
                   ? "bg-yellow-100 text-gray-800 rounded-t-xl rounded-bl-xl"
                   : "bg-blue-50 text-gray-900 rounded-tr-xl rounded-b-xl"
               }`}
@@ -82,7 +127,7 @@ const Chatbot: React.FC = () => {
         className="flex flex-col items-center p-2 bg-white w-full"
         onSubmit={(e) => e.preventDefault()}
       >
-        <div className="flex space-x-2 w-full ml-4 mb-3 items-center">
+        {/* <div className="flex space-x-2 w-full ml-4 mb-3 items-center">
           <Checkbox id="terms" />
           <label
             htmlFor="terms"
@@ -90,14 +135,14 @@ const Chatbot: React.FC = () => {
           >
             비밀로 할래요
           </label>
-        </div>
+        </div> */}
         <div className="flex w-full">
           <div className="flex grow">
             <input
               type="text"
               value={userInput}
               onChange={handleInputChange}
-              placeholder="메시지를 입력하세요..."
+              placeholder={placeholderMessage}
               className="flex-1 grow peer bg-blue-50 px-4 py-3 rounded-lg shadow-sm mr-2 outline-none placeholder-gray-500 text-gray-800"
             />
 

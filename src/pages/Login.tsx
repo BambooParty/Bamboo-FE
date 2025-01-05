@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "../components/ui/input";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
@@ -12,14 +12,22 @@ interface IUserInfo {
 
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm<IUserInfo>();
-  const { user, setUser } = useUserStore();
+  const { setUser, clearUser } = useUserStore();
+
+  const logout = async () => {
+    await axios.post("/api/v1/auth/log-out");
+    clearUser();
+  };
+
+  useEffect(() => {
+    logout();
+  }, []);
 
   const navigate = useNavigate();
 
   const submitHandler = async (formData: IUserInfo) => {
     const { data } = await axios.post("/api/v1/auth/log-in", formData);
-    const { data: userData } = await axios.get("/api/v1/users/me");
-    setUser({ ...userData });
+    setUser({ ...data });
 
     navigate("/");
   };
