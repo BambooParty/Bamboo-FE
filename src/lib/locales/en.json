@@ -1,0 +1,9 @@
+{
+  "menu": {
+    "logo": "BAMBOO",
+    "chatbot": "chat",
+    "board": "community",
+    "profile": "profile"
+  },
+  "message": "Text message..."
+}
