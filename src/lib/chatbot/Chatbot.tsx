@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent, useEffect, useRef } from "react";
 import axios from "axios";
 import useUserStore from "@/stores/UserStore";
 import { useConfigStore } from "@/stores/ConfigStore";
+import Avatar from "boring-avatars";
 
 type Message = {
   sender: "HUMAN" | "AI";
@@ -104,7 +105,13 @@ const Chatbot: React.FC = () => {
           >
             {/* 봇 프로필 아이콘 */}
             {msg.sender === "AI" && (
-              <div className="w-10 h-10 bg-yellow-300 rounded-full flex items-center justify-center mr-3 -translate-y-2"></div>
+              <Avatar
+                className="mr-3 -translate-y-2"
+                name={user?.nickname}
+                variant="beam"
+                size={40}
+              />
+              // <div className="w-10 h-10 bg-yellow-300 rounded-full flex items-center justify-center mr-3 -translate-y-2"></div>
             )}
 
             {/* 메시지 버블 */}

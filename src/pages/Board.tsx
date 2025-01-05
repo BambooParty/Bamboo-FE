@@ -1,9 +1,10 @@
-import { useState } from "react";
-import Post from "../components/Board/Post";
+import { useEffect, useState } from "react";
 import WritePostModal from "../components/Board/WritePostModal";
 import MbtiButton from "../components/MbtiButton";
 import { Input } from "../components/ui/input";
-import { postData } from "../data/testData";
+import PostItem from "@/components/PostItem";
+import { Posts } from "@/types/boardTypes";
+import { getPosts } from "@/api/apis";
 
 const Board = () => {
   const [selectedMbti, setSelectedMbti] = useState<string[]>([
@@ -13,23 +14,28 @@ const Board = () => {
     "j",
   ]);
 
-  const filteredPosts = postData.filter((post) => {
-    return (
-      post.mbti.length === selectedMbti.length &&
-      post.mbti
-        .split("")
-        .every(
-          (mbti, index) =>
-            mbti.toLowerCase() === selectedMbti[index].toLowerCase()
-        )
-    );
-  });
+  const [postData, setPostData] = useState<Posts[]>([]);
+  const userId = "testuser";
+
+  console.log(postData);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const mbti = selectedMbti.join("").toUpperCase();
+        const posts = await getPosts(mbti, userId);
+        setPostData(posts || []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPosts();
+  }, [selectedMbti]);
 
   return (
     <>
       <div className="flex flex-col items-center gap-5">
         <h2 className="text-2xl font-bold">
-          원하는 MBTI를 선택해서 게시글을 확인해보세요!
+          Select your desired MBTI to view the posts!
         </h2>
         <div className="flex items-center gap-3">
           <MbtiButton
@@ -79,22 +85,20 @@ const Board = () => {
         </div>
       </div>
       <div className="flex flex-col gap-5 mt-5">
-        {filteredPosts.map((post) => (
-          <Post
-            username={post.username}
-            mbti={post.mbti}
+        {/* {postData?.map((post) => (
+          <PostItem
+            key={post.userId}
             date={post.date}
             title={post.title}
-            contents={post.content}
-            comments={post.comments}
-            postId={post.postId}
+            // contents={post.content}
+            commentCount={post.commentCount}
           />
-        ))}
+        ))} */}
 
         <div className="flex items-center gap-3">
           <Input
             className="border-bamboo rounded-full h-14 px-5"
-            placeholder="검색"
+            placeholder="Search"
           />
           <WritePostModal />
         </div>

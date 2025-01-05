@@ -42,8 +42,7 @@ const Login: React.FC = () => {
             <div className="w-full flex flex-col items-start mb-6">
               <label
                 htmlFor="id"
-                className="mb-2 text-sm font-medium text-gray-900"
-              >
+                className="mb-2 text-sm font-medium text-gray-900">
                 ID
               </label>
               <Input className="py-6" {...register("userId")} />
@@ -51,8 +50,7 @@ const Login: React.FC = () => {
             <div className="w-full flex flex-col items-start mb-6">
               <label
                 htmlFor="id"
-                className="mb-2 text-sm font-medium text-gray-900"
-              >
+                className="mb-2 text-sm font-medium text-gray-900">
                 Password
               </label>
               <Input
@@ -66,16 +64,14 @@ const Login: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full text-white bg-bamboo hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-            >
+              className="w-full text-white bg-bamboo hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
               로그인
             </button>
             <p className="text-sm font-light text-gray-500 mt-4">
               계정이 없으신가요?
               <Link
                 to="/signup"
-                className="font-medium text-primary-600 hover:underline ml-2"
-              >
+                className="font-medium text-primary-600 hover:underline ml-2">
                 회원가입
               </Link>
             </p>

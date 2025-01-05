@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // 사용자 상태 타입
 interface User {
@@ -16,14 +17,21 @@ interface UserStore {
 }
 
 // Zustand 스토어 생성
-const useUserStore = create<UserStore>()((set) => ({
-  user: null,
-  setUser: (user) => set({ user }),
-  clearUser: () => set({ user: null }),
-  updateUserField: (field) =>
-    set((state) => ({
-      user: state.user ? { ...state.user, ...field } : null,
-    })),
-}));
+const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      user: null,
+      setUser: (user) => set({ user }),
+      clearUser: () => set({ user: null }),
+      updateUserField: (field) =>
+        set((state) => ({
+          user: state.user ? { ...state.user, ...field } : null,
+        })),
+    }),
+    {
+      name: "userSession", // LocalStorage에 저장될 키 이름
+    }
+  )
+);
 
 export default useUserStore;

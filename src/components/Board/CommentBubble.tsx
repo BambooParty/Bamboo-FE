@@ -5,16 +5,15 @@ interface CommentBubbleProps {
   comment: string;
   username: string;
   date: string;
-  currentUser: string;
 }
 
 const CommentBubble: React.FC<CommentBubbleProps> = ({
   comment,
   username,
   date,
-  currentUser,
 }) => {
-  const isCurrentUser = currentUser === username;
+  const usernick = "www";
+  const isCurrentUser = username === usernick;
 
   return (
     <div

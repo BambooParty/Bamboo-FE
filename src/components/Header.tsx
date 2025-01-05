@@ -34,8 +34,7 @@ const Header: React.FC = () => {
             </a>
             <button
               className="bg-transparent"
-              onClick={() => setLanguage(language == "en" ? "ko" : "en")}
-            >
+              onClick={() => setLanguage(language == "en" ? "ko" : "en")}>
               <GlobalIcon />
             </button>
           </div>
@@ -45,32 +44,28 @@ const Header: React.FC = () => {
                 <a
                   href="/"
                   className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
-                  aria-current="page"
-                >
+                  aria-current="page">
                   {menu?.chatbot.toUpperCase()}
                 </a>
               </li>
               <li>
                 <a
                   href="board"
-                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
-                >
+                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">
                   {menu?.board.toUpperCase()}
                 </a>
               </li>
               <li>
                 <a
                   href="profile"
-                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 "
-                >
+                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 ">
                   {menu?.profile.toUpperCase()}
                 </a>
               </li>
               <li>
                 <a
                   href="login"
-                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
-                >
+                  className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">
                   {user
                     ? language == "en"
                       ? "SIGN OUT"
@@ -95,8 +90,7 @@ const GlobalIcon = () => (
     className="w-5 h-5 stroke-white"
     viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+    xmlns="http://www.w3.org/2000/svg">
     <path
       d="M19.0593 18.6699L16.9193 14.3999L14.7793 18.6699"
       // stroke="#292D32"
