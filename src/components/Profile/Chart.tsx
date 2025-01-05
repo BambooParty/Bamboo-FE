@@ -39,7 +39,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const getColorByScore = (score: number) => {
-  console.log(score);
   if (score >= 80) return "#ED2F1A"; // 긴급
   if (score >= 60) return "#FF7D10"; // 위험
   if (score >= 30) return "#F9DC34"; // 경고
