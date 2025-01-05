@@ -2,40 +2,37 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { FaRegComment } from "react-icons/fa";
 import MbtiBadge from "./MbtiBadge";
-import { UserPostProps } from "@/types/boardTypes";
+import { GetPost } from "@/types/boardTypes";
 
-const PostItem: React.FC<UserPostProps> = ({
-  username,
-  mbti,
-  title,
+const PostItem: React.FC<GetPost> = ({
   date,
-  contents,
-  comments,
-  postId,
+  title,
+  contentSummary,
+  commentCount,
 }) => {
   const navigate = useNavigate();
-  const handlePostClick = (postId: string) => {
-    navigate(`/board/${postId}`);
+  const handlePostClick = (title: string) => {
+    navigate(`/board/${title}`);
   };
   return (
     <div
       className="p-5 rounded-sm cursor-pointer hover:bg-gray-100"
-      onClick={() => handlePostClick(postId)}>
+      onClick={() => handlePostClick(title)}>
       <div className="flex items-center gap-3">
-        <MbtiBadge mbti={mbti} />
+        <MbtiBadge mbti="INTP" />
         <h2 className="text-xl font-bold">{title}</h2>
       </div>
-      <h2>{contents}</h2>
+      <h2>{contentSummary}</h2>
 
       <div className="flex items-center gap-3">
         <span className="flex items-center gap-1">
           <span>
             <FaRegComment />
           </span>
-          <span>{comments.length}</span>
+          <span>{commentCount}</span>
         </span>
         <span>|</span> <span>{date}</span> <span>|</span>
-        <span>{username}</span>
+        <span>{"test user"}</span>
       </div>
     </div>
   );
